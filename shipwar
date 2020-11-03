@@ -1,0 +1,8 @@
+ mvn clean package
+
+  echo "build done";
+
+rm -rf $TOMCAT_HOME/webapps/.*
+cp ./target/crdt-client.war $TOMCAT_HOME/webapps/crdt-client.war
+
+  echo "war shipped !"
