@@ -1,0 +1,48 @@
+div {
+    background-color: maroon;
+    display: flex;
+    padding: 10px;
+    height: fit-content;
+    width: fit-content;
+}
+label,input {
+    font-size:30px; 
+    font-family:Helvetica;
+    color: aliceblue;
+}
+button {
+    margin:1px;
+    color : white;
+    border: none;
+    background-color: #282828;
+    height: 45px;
+    width: 74px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: ;
+    font-family: Helvetica;
+    font-size: 17px;
+    opacity: 1;
+    transition:0.7s;
+    }
+ 
+ button:hover {
+    margin: 1px;
+    color : white;
+    background-color: #707070;
+    height: 45px;
+    width: 74px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight:;
+    font-family: Helvetica;
+    font-size: 17px;
+ 
+    }
+ 
+
+input {
+    font-size:30px; 
+    font-family:Helvetica;
+    color:black;
+}
