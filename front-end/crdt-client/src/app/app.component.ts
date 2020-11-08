@@ -1,7 +1,5 @@
   import { Component } from '@angular/core';
   import { from } from 'rxjs';
-  import { PlaneComponent } from './plane/plane.component';
-  import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +8,4 @@
 })
 export class AppComponent {
   title = 'crdt-client';
-  pln : any;
-  logn : any;
 }

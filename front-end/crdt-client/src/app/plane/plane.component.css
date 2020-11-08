@@ -1,9 +1,30 @@
-div{
+.outer {
     background-color: black;
     /* opacity: ; */
-    height: 100vh;
+    height: 100vw;
     width: 100vw;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
+    /* justify-content: center; */
+    flex-direction: column;
+    padding: 20px;
+}
+
+.login {
+    /* width: 100vw; */
+    /* height: 100vw; */
+    padding: 40px;
+    display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.sessionInfo {
+    background-color: black;
+    border-style: solid;
+    border-color: greenyellow;
+    font-family: Helvetica;
+    font-size: 17px;
+    color: greenyellow;
+    padding: 20px;
 }
