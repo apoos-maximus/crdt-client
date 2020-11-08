@@ -4,7 +4,6 @@
         {{sessionID}}
     </div>
     <div class="login">
-        <app-login></app-login>
+        <app-login (value_out) = "setSessionId($event)"></app-login>
     </div>
-    
 </div>

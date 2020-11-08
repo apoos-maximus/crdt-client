@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -6,17 +6,14 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  @Input () value : String;
-  
-  /**
-   * getValue
-   */
-  public getValue() {
-    return this.value;
-  }
+  value : String;
 
+  @Output () 
+  value_out: EventEmitter<String> = new EventEmitter<String> ();
+  
   onClickHandler = function () {
-    console.log(this.getValue() + " is value !");
+    console.log(this.value + " is value !");
+    this.value_out.emit(this.value);
   }
   constructor () {
   }

@@ -6,6 +6,11 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PlaneComponent implements OnInit {
   sessionID : String ;
+
+  setSessionId = function(event) {
+    this.sessionID = event;
+  }
+
   constructor() {
   }
 
