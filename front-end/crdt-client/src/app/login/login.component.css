@@ -1,10 +1,19 @@
-div {
+div .login-in{
     background-color: midnightblue;
     display: flex;
     padding: 10px;
     height: fit-content;
     width: fit-content;
 }
+.login {
+    /* width: 100vw; */
+    /* height: 100vw; */
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 label,input {
     font-size:30px; 
     font-family:Helvetica;
