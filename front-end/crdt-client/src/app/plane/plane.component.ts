@@ -1,4 +1,6 @@
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, Input, OnInit } from '@angular/core';
+import { SessionService } from '../session.service';
 @Component({
   selector: 'app-plane',
   templateUrl: './plane.component.html',
@@ -11,10 +13,17 @@ export class PlaneComponent implements OnInit {
     this.sessionID = event;
   }
 
-  constructor() {
+  constructor(private sessionService : SessionService) {
+
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.sessionService.loginMessage$
+      .subscribe (
+        message => {
+          this.sessionID = message;
+        }
+      )
   }
 
 }

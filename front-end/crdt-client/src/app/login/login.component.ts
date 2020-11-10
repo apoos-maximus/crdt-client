@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { SessionService } from '../session.service';
 
 @Component({
   selector: 'app-login',
@@ -8,16 +9,14 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class LoginComponent implements OnInit {
   value : String;
 
-  @Output () 
-  value_out: EventEmitter<String> = new EventEmitter<String> ();
-  
-  onClickHandler = function () {
-    console.log(this.value + " is value !");
-    this.value_out.emit(this.value);
-  }
-  constructor () {
+  constructor (private sessionService : SessionService) {
   }
 
+  onClickHandler = function () {
+    console.log(this.value + " is value !");
+    this.sessionService.sendMessage(this.value);
+  }
+  
   ngOnInit(): void {
     this.value = "login-info-here !";
   }
