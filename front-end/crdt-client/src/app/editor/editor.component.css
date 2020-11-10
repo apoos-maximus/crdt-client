@@ -1,3 +1,9 @@
 .editor {
     color: white;
+    font-size: large;
+    font-family: monospace;
+    height: 100%;
+    border-style: dashed;
+    padding: 20px;
+    caret-color: orange;
 }
