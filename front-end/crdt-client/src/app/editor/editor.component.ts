@@ -9,13 +9,30 @@ export class EditorComponent implements OnInit {
   contents : String;
   
   onKeyPress(evt: any) {
-    if (evt.key == "Enter") this.contents = this.contents + '<br/>';
+ 
+    if( evt.keyCode !=32) {
+        if (evt.keyCode != 13){
+             this.contents += evt.key;
+        }
+        else {
+          this.contents += '<br/>';
+        }
+    } 
     else {
-      this.contents += evt.key;
+      this.contents += " ";
+      return false;
     }
-    
-    console.log(evt.key);
   }
+
+  onKeyDown(evt :any) {
+    if (evt.keyCode == 8){
+      if (this.contents.length != 0)
+        this.contents = this.contents.slice(0,-1);
+    }
+  }
+
+
+
   constructor() { }
 
   ngOnInit(): void {
