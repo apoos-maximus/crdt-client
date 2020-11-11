@@ -1,4 +1,5 @@
 .editor {
+    display: block;
     color: white;
     font-size: large;
     font-family: monospace;
