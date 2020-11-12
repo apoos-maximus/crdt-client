@@ -16,7 +16,15 @@
         <property name = "prefix" value = "/WEB-INF/jsp/"/>
         <property name = "suffix" value = ".jsp"/>
     </bean>
-
-    <bean name="SharedResourceController" class="org.apoos.controller.SharedResourceController">
+    <bean name = "contentPojo" class="org.apoos.pojo.UserContent">
+        <property name="content" value=""></property>
+    </bean>
+    <bean name = "userPojo" class="org.apoos.pojo.User">
+        <property name="name" value=""></property>
+        <property name="sessionId" value=""></property>
+        <property name="userContent" ref="contentPojo"></property>
+    </bean>
+    <bean name="SharedResourceController" class="org.apoos.controller.UserController">
+        <property name="user" ref="userPojo"></property>
     </bean>
 </beans>
