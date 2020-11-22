@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
-import { observable } from 'rxjs';
+import { Observable, observable } from 'rxjs';
+import 'rxjs/add/operator/map';
+import { map } from 'rxjs/operators';
+import { UserContent } from './UserContent';
 
 
 @Injectable({
@@ -8,7 +11,8 @@ import { observable } from 'rxjs';
 })
 export class SyncService {
 
-  contentUrl = "https://jsonplaceholder.typicode.com/users";
+  RootUrl = "https://jsonplaceholder.typicode";
+  syncBackend = "http://localhost:8080/crdt-client";
   options: {
     headers?: HttpHeaders | {[header: string]: string | string[]},
     observe?: 'body' | 'events' | 'response',
@@ -20,16 +24,11 @@ export class SyncService {
   
   constructor(private http : HttpClient) { }
 
-  /**
-   * getContents
-  : Observable  */
-    private getContents() {
-     return this.http.get(this.contentUrl);
+    public getContents() {
+      // return this.http.get(this.RootUrl + '/users');
+      const httpHeaders = new HttpHeaders( {
+      });
+      return this.http.get<UserContent>(this.syncBackend + '/content', {headers : httpHeaders});
   }
-
-    public showContents(){
-      const observableResponse = this.getContents();
-      console.log(observableResponse);
-    }
 
 }
