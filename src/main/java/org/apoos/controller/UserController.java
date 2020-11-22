@@ -1,13 +1,17 @@
 package org.apoos.controller;
 
 import org.apoos.pojo.User;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,9 +29,13 @@ public class UserController {
     }
 
     @GetMapping("/content")
-    public ResponseEntity<String> getContent(){
+    public ResponseEntity<String> getContent() throws IOException {
         logger.log(Level.INFO, "content request");
-        return  new ResponseEntity<>(this.user.getUserContent().getContent(), HttpStatus.OK);
+        ObjectMapper objectMapper = new ObjectMapper();
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
+        String JSONDescription = objectMapper.writeValueAsString(this.user.getUserContent());
+        return  new ResponseEntity<>(JSONDescription,responseHeaders, HttpStatus.OK);
     }
 
     @PostMapping("/content")
