@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription, timer, Subject } from 'rxjs';
 import { switchMap, takeUntil, catchError, map, retry, share } from 'rxjs/operators';
 import { UserContent } from '../UserContent';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-editor',
@@ -17,11 +18,10 @@ export class EditorComponent implements OnInit {
   private stopPolling = new Subject();
 
   constructor(private syncService : SyncService) { }
-  
 
   ngOnInit(): void {
     this.userContent$ = timer(1,3000).pipe(
-      switchMap( ()=> this.syncService.getContents() ),
+      switchMap( ()=> this.syncService.setContents({ "content": this.contents }) ),
       retry(),
       share(),
       takeUntil(this.stopPolling  )
