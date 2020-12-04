@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   onClickHandler = function () {
     console.log(this.value + " is value !");
-    this.sessionService.sendMessage(this.value);
+    this.sessionService.sendMessage(this.value).subscribe();
   }
   
   ngOnInit(): void {

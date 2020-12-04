@@ -2,7 +2,9 @@ package org.apoos.controller;
 
 import org.apoos.pojo.User;
 import org.apoos.pojo.UserContent;
+import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.node.ObjectNode;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,11 +21,20 @@ public class UserController {
     private static final Logger logger = Logger.getLogger(UserController.class.getName());
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestParam String name) {
+    public ResponseEntity<String> login(@RequestBody String requestBody) throws IOException {
+        logger.log(Level.INFO, "POST : login : " + requestBody);
+        JsonNode parent = new ObjectMapper().readTree(requestBody);
+        String name = parent.path("name").asText();
         this.user.setName(name);
         this.user.setSessionId(name);
         logger.log(Level.INFO, "name : " + this.user.getName());
-        return new ResponseEntity<>("login success", HttpStatus.OK);
+
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode session =objectMapper.createObjectNode();
+        session.put("status","OK");
+        return new ResponseEntity<>(objectMapper.writeValueAsString(session) , responseHeaders, HttpStatus.OK);
     }
 
     @GetMapping("/content")
